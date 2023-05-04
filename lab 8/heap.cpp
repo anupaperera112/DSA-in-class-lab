@@ -1,28 +1,30 @@
 #include <iostream>
 #include <vector>
-#include <typeinfo>
+
 using namespace std;
   
 // function to heapify the tree
 void heapify(int arr[], int n, int root)
 {
-   // build heapify
-  int max = root;
-  int left = 2 * root + 1;
-  int right = 2 * root + 2;
-  //int temp;
+int largest = root; 
+	int l = 2 * root + 1; 
+	int r = 2 * root + 2; 
 
-  if(left <= n && arr[left] > arr[root]){
-      max = left;
-  }
-  if(right <= n && arr[right] > arr[root]){
-      max = right;
-  }
 
-  if(max != root){
-      swap(arr[root], arr[max]);
-      heapify(arr, n, max);
-  }
+	if (l < n && arr[l] > arr[largest])
+		largest = l;
+
+
+	if (r < n && arr[r] > arr[largest])
+		largest = r;
+
+
+	if (largest != root) {
+		swap(arr[root], arr[largest]);
+
+
+		heapify(arr, n, largest);
+	}
 }
   
 // implementing heap sort
@@ -44,8 +46,8 @@ void heapSort(int arr[], int n)
 /* print contents of array */
 void displayArray(int arr[], int n)
 {
-   for (int i=n-1; i>-1; --i)
-   cout << arr[i] << " ";
+   for (int i=0; i<n; ++i)
+      cout << arr[i] << " ";
    cout << "\n";
 }
   
@@ -68,7 +70,7 @@ int main()
   for (int i = 0; i < l; i++) {
         heap_arr[i] = heap_vec[i];
     }
-   //int [] = {4,17,3,12,9,6};
+   //int heap_arr [] = { 60 ,20 ,40 ,70, 30, 10};
    int n = sizeof(heap_arr)/sizeof(heap_arr[0]);
 
    cout<<"Input array"<<endl;
